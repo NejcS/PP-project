@@ -25,6 +25,7 @@ body {
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
 	border-radius: 50px;
+	margin-left: 30%;
 }
 
 .game {
@@ -33,6 +34,7 @@ body {
 
 .game span {
 	font-size: 150px;
+	margin-right: 30px;
 }
 
 .game input {
@@ -41,4 +43,11 @@ body {
 	background: transparent;
 	border: transparent;
 	margin-left: 60px;
+	outline: 0;
+}
+
+.progress-bar {
+	-webkit-transition: width 21s;
+	transition: width 21s;
+	width: 100%;
 }

@@ -19,9 +19,10 @@ $( document ).ready( function() {
 	function startGame() {
 		progress++;
 
+
 		if ( operatorContainer.html() == "+" ) {
 			var result = Number( numContainer1.html() )	+ Number( numContainer2.html() );
-		} else if ( operatorContainer.html() == "-" ){
+		} else if ( operatorContainer.html() == "-" ) {
 			var result = Number( numContainer1.html() )	- Number( numContainer2.html() );
 		} else if ( operatorContainer.html() == "*" ) {
 			var result = Number( numContainer1.html() )	* Number( numContainer2.html() );
@@ -37,7 +38,7 @@ $( document ).ready( function() {
 
 		resultContainer.val("");
 		
-		if ( progress == 9){
+		if ( progress == 10){
 			clearInterval( game );
 			return;
 		}
@@ -54,5 +55,6 @@ $( document ).ready( function() {
 	}
 
 	// start game loop
-	game = setInterval(startGame, 1500);
+	$(".progress-bar").width('0');
+	game = setInterval(startGame, 2000);
 });
