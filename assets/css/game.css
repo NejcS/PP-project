@@ -1,0 +1,44 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.score {
+	height: 40px;
+}
+
+.score .icon {
+	width: 10%;
+	height: 100%;
+	display: inline-block;
+}
+
+.icon .circle.red {
+	background: red;
+}
+
+.icon .circle {
+	width: 40px;
+	height: 100%;
+	background: #00AE00;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+.game {
+	text-align: center;
+}
+
+.game span {
+	font-size: 150px;
+}
+
+.game input {
+	width: 250px;
+	font-size: 150px;
+	background: transparent;
+	border: transparent;
+	margin-left: 60px;
+}
