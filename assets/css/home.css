@@ -1,0 +1,19 @@
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #eee;
+}
+
+.side .user img {
+	width: 100%;
+	border-radius: 350px;
+}
+
+.side .user h2 {
+	text-align: center;
+}
+
+.side .options button {
+	width: 80%;
+	margin: 10px 10%;
+}

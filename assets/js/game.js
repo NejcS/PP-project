@@ -3,10 +3,16 @@ $( document ).ready( function() {
 	var numContainer1 = $("span.number1");
 	var numContainer2 = $("span.number2");
 	var operatorContainer = $("span.operator");
-	
 	resultContainer.focus();
-	var progress = 0, firstGame = true;
-	var game;
+	var progress = 0, successRate = 0;
+	var game, time;
+
+	if (level == 1 || level == 2) {
+		time1 = 2000;
+	} else if (level == 3) {
+		time1 = 1500;
+	}
+	
 
 	function addProgress( success ) {
 		if ( success ) {
@@ -16,9 +22,18 @@ $( document ).ready( function() {
 		}
 	}
 
+	function sendResult() {
+		$(".alert-success").append( " " + String( successRate ) + " / " + String( progress ) ).show();
+		
+		$.ajax({
+			url: '/result',
+			type: 'POST',
+			data: { result: successRate }
+		});
+	}
+
 	function startGame() {
 		progress++;
-
 
 		if ( operatorContainer.html() == "+" ) {
 			var result = Number( numContainer1.html() )	+ Number( numContainer2.html() );
@@ -32,6 +47,7 @@ $( document ).ready( function() {
 
 		if ( result == Number( resultContainer.val() )){
 			addProgress( true );
+			successRate++;
 		} else {
 			addProgress( false );
 		}
@@ -40,15 +56,20 @@ $( document ).ready( function() {
 		
 		if ( progress == 10){
 			clearInterval( game );
+			setTimeout(sendResult, 2000);
 			return;
 		}
-
 
 		var a = Math.floor( Math.random() * 9) + 1, 
 			b = Math.floor( Math.random() * 9) + 1, 
 			operator = Math.random();
 
-		operator = operator < 0.5 ? ( operator < 0.25 ? "+" : "-" ) : ( operator < 0.75 ? "*" : "/");
+		if (level == 1) {
+			operator = operator < 0.5 ? "+" : "-";
+		} else {
+			operator = operator < 0.5 ? ( operator < 0.25 ? "+" : "-" ) : ( operator < 0.75 ? "*" : "/");	
+		}
+
 		operatorContainer.html( operator );
 		numContainer1.html( a );
 		numContainer2.html( b );
@@ -56,5 +77,5 @@ $( document ).ready( function() {
 
 	// start game loop
 	$(".progress-bar").width('0');
-	game = setInterval(startGame, 2000);
+	game = setInterval(startGame, time1);
 });
